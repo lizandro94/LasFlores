@@ -28,6 +28,15 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "LasFlores.Spa", "LasFlores.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD0EF81F-9380-4736-A0E7-8D197C498B5B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{ECDA13FC-F63C-4C29-8886-A8A243B84D0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileEditor", "Tools\FileEditor\FileEditor.csproj", "{E0582C88-27B3-43A1-8FD2-82245B00B3F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{A17B9360-EA1C-4002-A32D-A027C433CECF}"
+	ProjectSection(SolutionItems) = preProject
+		Data\members.json = Data\members.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,9 +51,16 @@ Global
 		{302EDA46-793E-484F-8371-3C938922F439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{302EDA46-793E-484F-8371-3C938922F439}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{302EDA46-793E-484F-8371-3C938922F439}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E0582C88-27B3-43A1-8FD2-82245B00B3F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0582C88-27B3-43A1-8FD2-82245B00B3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0582C88-27B3-43A1-8FD2-82245B00B3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0582C88-27B3-43A1-8FD2-82245B00B3F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E0582C88-27B3-43A1-8FD2-82245B00B3F6} = {ECDA13FC-F63C-4C29-8886-A8A243B84D0A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5473AAEC-231D-4661-9D03-4ADC6862BE2E}
