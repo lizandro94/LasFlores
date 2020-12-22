@@ -26,6 +26,7 @@ namespace LasFlores
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +38,18 @@ namespace LasFlores
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(policy =>
+            {
+                var allowedOrigins = Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+                if (allowedOrigins == null || allowedOrigins.Length == 0)
+                    throw new InvalidOperationException("Cors:AllowedOrigins is not defined on appsettings");
+
+                policy.WithOrigins(allowedOrigins);
+                policy.WithOrigins();
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+            });
 
             app.UseRouting();
 
