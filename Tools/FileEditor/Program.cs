@@ -7,7 +7,7 @@ namespace FileEditor
     {
         static void Main(string[] args)
         {
-            string json = File.ReadAllText("C:\\Code\\LasFlores\\members.json");
+            string json = File.ReadAllText("C:\\Code\\LasFlores\\Data\\members.json");
             dynamic membersList = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
 
             foreach (var member in membersList)
@@ -20,7 +20,7 @@ namespace FileEditor
 
             //jsonObj["Bots"][0]["Password"] = "new password";
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(membersList, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText("C:\\Code\\LasFlores\\members.json", output);
+            File.WriteAllText("C:\\Code\\LasFlores\\Data\\members.json", output);
             Console.WriteLine("Hello World!");
         }
     }
