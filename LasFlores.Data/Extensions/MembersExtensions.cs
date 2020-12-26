@@ -42,7 +42,7 @@ namespace LasFlores.Data.Extensions
 
         private static Member BuildMember(dynamic member)
         {
-            var id = member["uuid"];
+            var id = member["uuid"].ToString();
             var firstName = member["nameFormats"]["givenPreferredLocal"];
             var surname = member["nameFormats"]["familyPreferredLocal"];
             var fullName = $"{firstName} {surname}";
