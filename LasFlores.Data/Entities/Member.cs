@@ -11,5 +11,11 @@ namespace LasFlores.Data.Entities
         public string MemberNumber { get; private set; }
         public string Phone { get; private set; }
         public string Identification { get; private set; }
+
+        public Member(string id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }
