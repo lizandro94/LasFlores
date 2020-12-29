@@ -1,8 +1,9 @@
 import React from 'react';
-import { Input, Divider, Table } from "antd";
+import { Input, Divider, Table, Button } from "antd";
+import { PlusOutlined } from '@ant-design/icons';
 import MembersSelect from './MembersSelect';
 
-const Beneficiaries = ({ membersList }) => {
+const Beneficiaries = ({ membersList, beneficiary, onChangeBeneficiary }) => {
 
   const dataSource = [];
 
@@ -27,9 +28,10 @@ const Beneficiaries = ({ membersList }) => {
   return (
     <>
       <Divider>Beneficiarios</Divider>
-      <MembersSelect membersList={membersList} />
-      <Input style={{ width: 300, marginRight: 10 }} placeholder="N° miembro" />
-      <Input style={{ width: 300 }} placeholder="Teléfono" />
+      <MembersSelect membersList={membersList} onChange={onChangeBeneficiary} />
+      <Input style={{ width: 200, marginRight: 10 }} placeholder="N° miembro" value={beneficiary.memberNumber} />
+      <Input style={{ width: 150, marginRight: 20 }} placeholder="Teléfono" value={beneficiary.phone} />
+      <Button type="primary" shape="circle" icon={<PlusOutlined />} />
 
       <br /><br />
       <Table style={{ paddingLeft: 300, paddingRight: 300 }} dataSource={dataSource} columns={columns} />

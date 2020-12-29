@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from "antd";
 
-const MembersSelect = ({ membersList }) => {
+const MembersSelect = ({ membersList, onChange }) => {
     const { Option } = Select;
 
     return (
@@ -9,6 +9,7 @@ const MembersSelect = ({ membersList }) => {
             style={{ width: 300, marginRight: 10 }}
             placeholder="Nombre"
             showSearch
+            onChange={onChange}
             optionFilterProp="children"
             filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
