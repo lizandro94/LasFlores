@@ -20,19 +20,23 @@ const DocumentsGenerator = () => {
   }, []);
 
   const onChangePicker = (pickerId) => {
-    const selectedPicker = members.find(member => member.id === pickerId);
+    const selectedPicker = findMember(pickerId);
     if (selectedPicker) {
       setPicker(selectedPicker);
     }
   }
 
   const onChangeBeneficiary = (beneficaryId) => {
-    const selectedBeneficiary = members.find(member => member.id === beneficaryId);
+    const selectedBeneficiary = findMember(beneficaryId);
     if (selectedBeneficiary) {
       setBeneficiary(selectedBeneficiary);
     }
   }
 
+  const findMember = memberId => {
+    const member = members.find(member => member.id === memberId);
+    return member;
+  }
 
   return (
     <div className="App">
