@@ -3,7 +3,7 @@ import { Input, Divider, Table, Button } from "antd";
 import { PlusOutlined } from '@ant-design/icons';
 import MembersSelect from './MembersSelect';
 
-const Beneficiaries = ({ membersList, beneficiary, onChangeBeneficiary }) => {
+const Beneficiaries = ({ membersList, beneficiary, setBeneficiary, findMember }) => {
 
   const [beneficiariesList, setBeneficiaries] = useState([]);
 
@@ -25,6 +25,25 @@ const Beneficiaries = ({ membersList, beneficiary, onChangeBeneficiary }) => {
     },
   ];
 
+  const onChangeBeneficiary = (beneficaryId) => {
+    const selectedBeneficiary = findMember(beneficaryId);
+    if (selectedBeneficiary) {
+      setBeneficiary(selectedBeneficiary);
+    }
+  }
+
+  const onChangeMemberNumber = event => {
+    const newMemberNumber = event.target.value;
+    const updatedPicker = { ...beneficiary, memberNumber: newMemberNumber };
+    setBeneficiary(updatedPicker);
+  }
+
+  const onChangePhone = event => {
+    const newphone = event.target.value;
+    const updatedPicker = { ...beneficiary, phone: newphone };
+    setBeneficiary(updatedPicker);
+  }
+
   const onAddBeneficiary = () => {
     if (!beneficiaryIsSelected()) {
       return;
@@ -33,7 +52,7 @@ const Beneficiaries = ({ membersList, beneficiary, onChangeBeneficiary }) => {
       updateBeneficiary(beneficiary);
     }
     else {
-      addToList(beneficiary)
+      addToBeneficiariesList(beneficiary)
     }
   }
 
@@ -44,24 +63,32 @@ const Beneficiaries = ({ membersList, beneficiary, onChangeBeneficiary }) => {
       .some(beneficiary => beneficiary.id === beneficiaryToAdd.id);
   }
 
-  const addToList = newBeneficiary => {
+  const addToBeneficiariesList = newBeneficiary => {
     const listWithNewItem = [...beneficiariesList, newBeneficiary];
     setBeneficiaries(listWithNewItem);
   }
 
-  const updateBeneficiary = beneficiary => {
-    const beneficiaryToUpdate = beneficiariesList.find(b => b.id === beneficiary.id);
-    beneficiaryToUpdate.phone = 'jaja';
-    const updatedList = [...beneficiariesList];
-    debugger;
+  const updateBeneficiary = beneficiaryInState => {
+    let beneficiaryIndex = beneficiariesList.findIndex(b => b.id === beneficiaryInState.id);
+    const beneficiariesListCopy = [...beneficiariesList];
+    beneficiariesListCopy.splice(beneficiaryIndex, 1, beneficiaryInState);
+    setBeneficiaries(beneficiariesListCopy);
   }
 
   return (
     <>
       <Divider>Beneficiarios</Divider>
       <MembersSelect membersList={membersList} onChange={onChangeBeneficiary} />
-      <Input style={{ width: 200, marginRight: 10 }} placeholder="N° miembro" value={beneficiary.memberNumber} />
-      <Input style={{ width: 150, marginRight: 20 }} placeholder="Teléfono" value={beneficiary.phone} />
+      <Input
+        style={{ width: 200, marginRight: 10 }}
+        placeholder="N° miembro"
+        onChange={onChangeMemberNumber}
+        value={beneficiary.memberNumber} />
+      <Input
+        style={{ width: 150, marginRight: 20 }}
+        placeholder="Teléfono"
+        onChange={onChangePhone}
+        value={beneficiary.phone} />
       <Button onClick={onAddBeneficiary} type="primary" shape="circle" icon={<PlusOutlined />} />
 
       <br /><br />
