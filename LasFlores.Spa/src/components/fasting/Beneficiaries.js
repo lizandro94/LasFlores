@@ -63,17 +63,24 @@ const Beneficiaries = ({ membersList, beneficiary, setBeneficiary, findMember })
       .some(beneficiary => beneficiary.id === beneficiaryToAdd.id);
   }
 
+  const updateBeneficiary = beneficiaryToUpdate => {
+    let beneficiaryIndex = beneficiariesList.findIndex(b => b.id === beneficiaryToUpdate.id);
+    const updatedList = getNewListWithUpdatedBeneficiary(beneficiaryIndex, beneficiaryToUpdate);
+    setBeneficiaries(updatedList);
+  }
+
+  const getNewListWithUpdatedBeneficiary = (beneficiaryIndex, beneficiaryInState) => {
+    const beneficiariesListCopy = [...beneficiariesList];
+    beneficiariesListCopy.splice(beneficiaryIndex, 1, beneficiaryInState);
+    return beneficiariesListCopy;
+  }
+
   const addToBeneficiariesList = newBeneficiary => {
     const listWithNewItem = [...beneficiariesList, newBeneficiary];
     setBeneficiaries(listWithNewItem);
   }
 
-  const updateBeneficiary = beneficiaryInState => {
-    let beneficiaryIndex = beneficiariesList.findIndex(b => b.id === beneficiaryInState.id);
-    const beneficiariesListCopy = [...beneficiariesList];
-    beneficiariesListCopy.splice(beneficiaryIndex, 1, beneficiaryInState);
-    setBeneficiaries(beneficiariesListCopy);
-  }
+  
 
   return (
     <>
